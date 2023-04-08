@@ -11,7 +11,7 @@ const Navbar = () => {
     const [toggle, setToggle] = useState(false);
     return (
         <nav
-            className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 bg-[#9a9a9a]`}>
+            className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 bg-[#c2582b] o-gradient`}>
             <div
                 className='w-full flex justify-between items-center max-w-7xl mx-auto'>
                 <Link
@@ -49,7 +49,40 @@ const Navbar = () => {
 
                     ))}
                 </ul>
+                <div className="sm:hidden flex flex-1 justify-end items-center">
+                    <img src={toggle ? close : menu}
+                        className='w-[28px] h-[28px] object-contain'
+                        alt='menu'
+                        onClick={() => setToggle(!toggle)} />
+                    <div className={`${!toggle ? 'hidden'
+                        : 'flex'} p-6  black-gradient absolute top-20 
+          right-0 mx-4 my-2 min-w-[160px]  z-10 rounded-xl`}>
+                        <ul className='list-none flex justify-end items-start flex-col gap-5'>
+                            {navLinks.map((Link) => (
+                                <li
+                                    key={Link.id}
 
+                                    className={`${active === Link.title
+                                        ? "text-[#fff000]"
+                                        : "text-white"}
+                    font-poppins font-medium
+              hover:text-[#fff000] text-[18px] cursor-pointer `}
+                                    onClick={() => {
+                                        setToggle(!toggle);
+                                        setActive(Link.title);
+                                    }
+                                    }
+                                >
+                                    <a href={
+                                        `#${Link.id}`}>{Link.title}</a>
+                                </li>
+                            ))}
+                        </ul>
+
+
+
+                    </div>
+                </div>
             </div>
 
         </nav>
